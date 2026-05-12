@@ -1,0 +1,24 @@
+# Render.com blueprint — one-click deploy as a static site.
+# After importing this repo in Render: Dashboard → New → Blueprint → connect this repo.
+
+services:
+  - type: web
+    name: tjmethod
+    runtime: static
+    buildCommand: "echo 'No build step — static HTML/CSS/JS.'"
+    staticPublishPath: ./
+    autoDeploy: true
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+    routes:
+      - type: rewrite
+        source: /survey
+        destination: /survey.html
