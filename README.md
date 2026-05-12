@@ -29,6 +29,6 @@ That's it — pushes to `main` auto-deploy.
 
 ## Contact
 
-- Email — mrthomasjoffe@gmail.com
+- Email — thomas@thetjmethod.com.au
 - Phone — +61 473 833 625
 - LinkedIn — [linkedin.com/in/thomasjoffe](https://www.linkedin.com/in/thomasjoffe)

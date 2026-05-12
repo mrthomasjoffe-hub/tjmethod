@@ -8,7 +8,7 @@
 
 (function () {
 
-  const EMAIL = "mrthomasjoffe@gmail.com";
+  const EMAIL = "thomas@thetjmethod.com.au";
 
   // ---------- Build scales (1-5 likert) ----------
   const SCALE = [

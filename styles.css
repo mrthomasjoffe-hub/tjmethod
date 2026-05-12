@@ -300,8 +300,13 @@ p { margin: 0 0 1em; }
   display: grid;
   gap: 20px;
 }
-@media (min-width: 780px) {
-  .dd-list { grid-template-columns: repeat(4, 1fr); gap: 24px; }
+@media (min-width: 720px) {
+  .dd-list { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+}
+@media (min-width: 1000px) {
+  .dd-list { grid-template-columns: repeat(7, 1fr); gap: 14px; }
+  .dd-list li { padding: 20px 16px; font-size: 14px; }
+  .dd-list strong { font-size: 16px; }
 }
 .dd-list li {
   position: relative;
