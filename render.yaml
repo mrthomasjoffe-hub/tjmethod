@@ -22,3 +22,9 @@ services:
       - type: rewrite
         source: /survey
         destination: /survey.html
+      - type: rewrite
+        source: /reads
+        destination: /reads.html
+      - type: rewrite
+        source: /read
+        destination: /read.html

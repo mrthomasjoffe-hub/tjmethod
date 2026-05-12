@@ -918,3 +918,143 @@ p { margin: 0 0 1em; }
 /* small */
 .muted { color: var(--ink-quiet); }
 .center { text-align: center; }
+
+/* ===========================================================
+   THE METHOD READS — hub + dynamic read page
+   =========================================================== */
+
+/* hub hero */
+.reads-hero {
+  background: var(--cream);
+  border-bottom: 1px solid var(--line);
+  padding: 80px 0 72px;
+}
+.reads-hero h1 {
+  font-size: clamp(38px, 6vw, 60px);
+  margin: 0 0 24px;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+.reads-hero h1 em { color: var(--accent); font-style: italic; font-weight: 400; }
+.reads-hero .lede { max-width: 700px; color: var(--ink-soft); font-size: 18px; }
+.reads-meta {
+  margin-top: 18px;
+  font-size: 13.5px;
+  letter-spacing: 0.06em;
+  color: var(--ink-quiet);
+  text-transform: uppercase;
+}
+
+/* hub list */
+.reads-list {
+  padding: 72px 28px 64px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  max-width: 940px;
+}
+@media (min-width: 720px) {
+  .reads-list { grid-template-columns: 1fr 1fr; gap: 20px; }
+}
+
+.read-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 28px 28px 26px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+}
+.read-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: 0 14px 30px -16px rgba(31,41,55,0.16);
+}
+.read-card-num {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  min-width: 44px;
+  padding-top: 4px;
+}
+.read-card-body { flex: 1; }
+.read-card h2 {
+  font-size: 22px;
+  margin: 0 0 8px;
+  font-weight: 500;
+}
+.read-card-tag {
+  color: var(--ink-soft);
+  font-size: 15.5px;
+  line-height: 1.55;
+  margin: 0 0 14px;
+}
+.read-card-meta {
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  color: var(--ink-quiet);
+  margin: 0 0 18px;
+  text-transform: uppercase;
+}
+.read-card .btn-primary { padding: 10px 20px; font-size: 14.5px; }
+.read-card-pin {
+  display: inline-block;
+  font-size: 11.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(180,83,9,0.08);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin: 0 0 12px;
+  font-weight: 600;
+}
+.read-card-master {
+  grid-column: 1 / -1;
+  background: var(--cream);
+  border-color: var(--accent);
+}
+@media (max-width: 720px) {
+  .read-card-master { grid-column: auto; }
+}
+
+/* hub footer block */
+.reads-foot { padding: 72px 0 88px; }
+.reads-foot h3 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(22px, 3vw, 30px);
+  margin: 0 0 16px;
+  font-weight: 500;
+  max-width: 640px;
+}
+.reads-foot p {
+  color: var(--ink-soft);
+  font-size: 16.5px;
+  max-width: 680px;
+  line-height: 1.7;
+  margin: 0 0 18px;
+}
+.reads-foot .btn { margin-top: 12px; }
+
+/* read.html — intro panel and audience line */
+.read-intro {
+  padding-bottom: 8px;
+}
+.read-intro-copy {
+  font-size: 17px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  margin: 0 0 18px;
+}
+.read-audience {
+  font-size: 14.5px;
+  color: var(--ink-quiet);
+  border-top: 1px solid var(--cream-3);
+  padding-top: 18px;
+  margin: 0 0 24px;
+}
+.read-audience strong { color: var(--ink); font-weight: 600; }
