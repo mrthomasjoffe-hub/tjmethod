@@ -23,6 +23,11 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
+/* HTML `hidden` attribute should always hide, even when an element has
+   a custom display value (flex / grid). Without this, .read-card and
+   .progress quietly ignore .hidden = true. */
+[hidden] { display: none !important; }
+
 html { scroll-behavior: smooth; }
 
 body {
