@@ -391,6 +391,93 @@ p { margin: 0 0 1em; }
 .diag-inner { text-align: center; max-width: 720px; }
 .diag-inner .section-lede { margin-left: auto; margin-right: auto; margin-bottom: 36px; }
 
+/* ----- WORKED WITH (clients) ----- */
+.section-clients {
+  background: var(--white);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 96px 0 88px;
+  overflow: hidden; /* keep the marquee tidy at viewport edges */
+}
+.clients-head { margin-bottom: 48px; }
+.clients-head .section-h { max-width: 720px; }
+
+.clients-marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+  padding: 8px 0;
+}
+
+.clients-track {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 64px;
+  width: max-content;
+  animation: clientsScroll 70s linear infinite;
+  will-change: transform;
+}
+.clients-marquee:hover .clients-track,
+.clients-marquee:focus-within .clients-track { animation-play-state: paused; }
+
+@keyframes clientsScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.client {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(22px, 2.6vw, 30px);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  white-space: nowrap;
+  flex-shrink: 0;
+  position: relative;
+  padding: 6px 0;
+  opacity: 0.85;
+  transition: opacity var(--t), color var(--t);
+}
+.client:hover { opacity: 1; color: var(--accent); }
+
+/* delicate divider between wordmarks */
+.client:not(:last-child)::after {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.5;
+  vertical-align: middle;
+  margin-left: 64px;
+  transform: translateY(-2px);
+}
+
+.clients-foot {
+  margin: 44px auto 0;
+  font-size: 14px;
+  color: var(--ink-quiet);
+  text-align: center;
+  max-width: 740px;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clients-track { animation: none; flex-wrap: wrap; justify-content: center; width: 100%; gap: 28px 56px; }
+  .client:not(:last-child)::after { display: none; }
+}
+
+@media (max-width: 720px) {
+  .section-clients { padding: 72px 0 64px; }
+  .clients-track { gap: 44px; animation-duration: 55s; }
+  .client:not(:last-child)::after { margin-left: 44px; }
+}
+
 /* ----- ABOUT ----- */
 .about-grid {
   display: grid;
