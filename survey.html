@@ -151,44 +151,49 @@
           </div>
         </section>
 
-        <!-- RESULTS -->
-        <section class="results" id="results">
-          <p class="step-cee">Your snapshot</p>
-          <h2 class="results-h" id="resultsHeadline">Here&rsquo;s where your transition is strong &mdash; and where it&rsquo;s quietly leaking energy.</h2>
+      </form>
 
-          <div class="bars" id="bars"></div>
+      <!-- RESULTS — sits outside #surveyForm so its <form> isn't nested -->
+      <section class="results" id="results">
+        <p class="step-cee">Your snapshot</p>
+        <h2 class="results-h" id="resultsHeadline">Here&rsquo;s where your transition is strong &mdash; and where it&rsquo;s quietly leaking energy.</h2>
 
-          <div class="results-summary" id="resultsSummary"></div>
+        <div class="bars" id="bars"></div>
 
-          <p class="muted" style="font-size:14px;">
-            Want this as a one-page PDF, with a fifteen-minute conversation about
-            what to do next? Send it through and I&rsquo;ll be in touch within two business days.
+        <div class="results-summary" id="resultsSummary"></div>
+
+        <div class="results-cta">
+          <h3 class="results-cta-h">Want the one-page read, and a fifteen-minute conversation?</h3>
+          <p class="results-cta-p">
+            Send the snapshot through. I&rsquo;ll come back to you within two business days
+            &mdash; with the read, and a time to talk if it&rsquo;s useful.
           </p>
 
-          <form id="emailResults" class="contact-form" style="padding: 22px 24px; margin-top: 16px;">
-            <label>
-              <span>Name</span>
-              <input type="text" name="name" required />
-            </label>
-            <label>
-              <span>Email</span>
-              <input type="email" name="email" required />
-            </label>
+          <form id="emailResults" class="email-form">
+            <div class="email-row">
+              <label>
+                <span>Name</span>
+                <input type="text" name="name" required autocomplete="name" />
+              </label>
+              <label>
+                <span>Email</span>
+                <input type="email" name="email" required autocomplete="email" />
+              </label>
+            </div>
             <label>
               <span>A line or two of context (optional)</span>
-              <textarea name="context" rows="3"></textarea>
+              <textarea name="context" rows="3" placeholder="What&rsquo;s the transition you&rsquo;re sitting inside?"></textarea>
             </label>
-            <button class="btn btn-primary" type="submit">Send me the read &amp; book a call</button>
+            <button class="btn btn-primary email-submit" type="submit">Send me the read &amp; book a call</button>
             <p class="form-note" id="emailNote" aria-live="polite"></p>
           </form>
+        </div>
 
-          <div class="results-actions">
-            <a class="btn btn-ghost" href="index.html">Back to the site</a>
-            <button class="btn btn-back" type="button" id="retake">Retake the Snapshot</button>
-          </div>
-        </section>
-
-      </form>
+        <div class="results-actions">
+          <a class="btn btn-ghost" href="index.html">Back to the site</a>
+          <button class="btn btn-back" type="button" id="retake">Retake the Snapshot</button>
+        </div>
+      </section>
     </div>
 
     <p class="center muted" style="font-size:13px; margin-top: 24px;">
