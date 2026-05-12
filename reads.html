@@ -45,9 +45,25 @@
     </div>
   </div>
 
-  <div class="container reads-list">
+  <!-- SITUATIONAL FILTER -->
+  <section class="reads-filter" aria-label="Filter reads by situation">
+    <div class="container">
+      <p class="reads-filter-q">Where are you right now?</p>
+      <div class="reads-filter-pills" role="tablist">
+        <button type="button" class="pill is-active" data-filter="all"        role="tab" aria-selected="true">All the Reads</button>
+        <button type="button" class="pill"           data-filter="inside"     role="tab" aria-selected="false">Already changing, and it&rsquo;s getting hard</button>
+        <button type="button" class="pill"           data-filter="approaching" role="tab" aria-selected="false">About to change, and preparing</button>
+        <button type="button" class="pill"           data-filter="overload"   role="tab" aria-selected="false">Carrying too many changes at once</button>
+      </div>
+      <p class="reads-filter-intro" id="filterIntro" aria-live="polite">
+        Eight reads, ordered roughly by how often they get used. Pick one based on where the work is &mdash; or filter to the moment you&rsquo;re sitting in.
+      </p>
+    </div>
+  </section>
 
-    <article class="read-card" data-read="leader">
+  <div class="container reads-list" id="readsList">
+
+    <article class="read-card" data-read="leader" data-tags="inside approaching overload">
       <div class="read-card-num">01</div>
       <div class="read-card-body">
         <h2>The Leader&rsquo;s Read</h2>
@@ -57,7 +73,7 @@
       </div>
     </article>
 
-    <article class="read-card" data-read="pressure">
+    <article class="read-card" data-read="pressure" data-tags="inside overload">
       <div class="read-card-num">02</div>
       <div class="read-card-body">
         <h2>The Pressure Read</h2>
@@ -67,7 +83,7 @@
       </div>
     </article>
 
-    <article class="read-card" data-read="sponsor">
+    <article class="read-card" data-read="sponsor" data-tags="inside approaching">
       <div class="read-card-num">03</div>
       <div class="read-card-body">
         <h2>The Sponsor Read</h2>
@@ -77,7 +93,7 @@
       </div>
     </article>
 
-    <article class="read-card" data-read="signal">
+    <article class="read-card" data-read="signal" data-tags="inside overload">
       <div class="read-card-num">04</div>
       <div class="read-card-body">
         <h2>The Signal Read</h2>
@@ -87,7 +103,7 @@
       </div>
     </article>
 
-    <article class="read-card" data-read="impact">
+    <article class="read-card" data-read="impact" data-tags="inside approaching">
       <div class="read-card-num">05</div>
       <div class="read-card-body">
         <h2>The Impact Read</h2>
@@ -97,7 +113,7 @@
       </div>
     </article>
 
-    <article class="read-card" data-read="capability">
+    <article class="read-card" data-read="capability" data-tags="inside approaching overload">
       <div class="read-card-num">06</div>
       <div class="read-card-body">
         <h2>The Capability Read</h2>
@@ -107,7 +123,7 @@
       </div>
     </article>
 
-    <article class="read-card" data-read="bridge">
+    <article class="read-card" data-read="bridge" data-tags="approaching">
       <div class="read-card-num">07</div>
       <div class="read-card-body">
         <h2>The Bridge Read</h2>
@@ -117,7 +133,7 @@
       </div>
     </article>
 
-    <article class="read-card read-card-master" data-read="coppse">
+    <article class="read-card read-card-master" data-read="coppse" data-tags="inside approaching overload">
       <div class="read-card-num">08</div>
       <div class="read-card-body">
         <p class="read-card-pin">The master read</p>
@@ -128,7 +144,45 @@
       </div>
     </article>
 
+    <p class="reads-empty" id="readsEmpty" hidden>
+      No reads in that group yet. Try another, or <a href="index.html#contact">start a conversation directly</a>.
+    </p>
+
   </div>
+
+  <script>
+    (function () {
+      const INTROS = {
+        all:         "Eight reads, ordered roughly by how often they get used. Pick one based on where the work is — or filter to the moment you're sitting in.",
+        inside:      "You're already inside the change, and the system is starting to feel it. These are the reads that surface what's quietly leaking — sponsorship, signal, load, impact, capability.",
+        approaching: "The change is coming. The cheapest time to find the gaps is before the work is announced. These reads pressure-test the bridge, the impact, the capability, and the sponsor before launch.",
+        overload:    "Too much is moving at once. These reads measure load, signal, and capability across the portfolio — and tell you, specifically, what to slow down or stop."
+      };
+      const pills = document.querySelectorAll('.reads-filter-pills .pill');
+      const cards = document.querySelectorAll('.read-card');
+      const intro = document.getElementById('filterIntro');
+      const empty = document.getElementById('readsEmpty');
+
+      function apply(filter) {
+        let shown = 0;
+        cards.forEach((c) => {
+          const tags = (c.dataset.tags || '').split(/\s+/);
+          const show = filter === 'all' || tags.includes(filter);
+          c.hidden = !show;
+          if (show) shown++;
+        });
+        empty.hidden = shown > 0;
+        intro.textContent = INTROS[filter] || INTROS.all;
+        pills.forEach((p) => {
+          const on = p.dataset.filter === filter;
+          p.classList.toggle('is-active', on);
+          p.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+      }
+
+      pills.forEach((p) => p.addEventListener('click', () => apply(p.dataset.filter)));
+    })();
+  </script>
 
   <section class="reads-foot section-cream">
     <div class="container">
