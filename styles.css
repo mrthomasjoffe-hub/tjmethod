@@ -1294,3 +1294,266 @@ p { margin: 0 0 1em; }
   margin: 0 0 24px;
 }
 .read-audience strong { color: var(--ink); font-weight: 600; }
+
+/* ===========================================================
+   AI layer — the long-form read, and its settings page
+   =========================================================== */
+
+/* ---------- the drafted read, under the scored summary ---------- */
+
+.ai-read {
+  margin: 28px 0 0;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--r);
+  background: var(--white);
+}
+
+.ai-read-body { padding: 26px 28px; }
+
+.ai-read-kicker {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.ai-read-offer {
+  margin: 0 0 18px;
+  color: var(--ink-soft);
+  max-width: 62ch;
+}
+
+.ai-read-h {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(21px, 2.6vw, 27px);
+  line-height: 1.25;
+  margin: 0 0 14px;
+  color: var(--ink);
+}
+
+.ai-read-lede {
+  margin: 0 0 24px;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 66ch;
+}
+
+.ai-read-dims {
+  display: grid;
+  gap: 18px;
+  margin: 0 0 24px;
+  padding: 22px 0 0;
+  border-top: 1px solid var(--line);
+}
+
+.ai-read-dim-name {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.ai-read-dim-verdict {
+  margin: 0 0 4px;
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+.ai-read-dim-so {
+  margin: 0;
+  color: var(--ink-quiet);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.ai-read-one {
+  padding: 20px 22px;
+  margin: 0 0 22px;
+  background: var(--cream);
+  border-radius: var(--r-sm);
+}
+
+.ai-read-one-lbl {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+}
+
+.ai-read-one-txt {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.ai-read-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.ai-read-engine {
+  font-size: 12px;
+  color: var(--ink-quiet);
+}
+
+.ai-read-status { margin: 0 0 6px; color: var(--ink-soft); }
+.ai-read-status.err { color: var(--accent-2); }
+.ai-read-status-sub { margin: 0 0 16px; font-size: 14px; color: var(--ink-quiet); }
+
+/* The drafted Stop / Start / Continue lines, under the standing questions. */
+.ssc-draft {
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  border-left: 2px solid var(--accent);
+  background: rgba(180, 83, 9, .05);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+/* ---------- the settings page ---------- */
+
+.ai-note {
+  padding: 20px 22px;
+  margin: 0 0 28px;
+  background: var(--cream);
+  border-radius: var(--r-sm);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+.ai-note p { margin: 0 0 12px; }
+.ai-note p:last-child { margin-bottom: 0; }
+.ai-note-warn { color: var(--ink); }
+
+.ai-note code,
+.ai-help code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .92em;
+  background: var(--cream-3);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.ai-field { margin: 0 0 22px; }
+
+.ai-label {
+  display: block;
+  margin: 0 0 7px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.ai-form input[type=text],
+.ai-form input[type=password],
+.ai-form select {
+  width: 100%;
+  padding: 11px 13px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  transition: border-color var(--t);
+}
+
+.ai-form input[type=text]:focus,
+.ai-form input[type=password]:focus,
+.ai-form select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.ai-row { display: flex; gap: 10px; align-items: center; }
+.ai-row input, .ai-row select { flex: 1; }
+
+.ai-help {
+  margin: 7px 0 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-quiet);
+}
+
+.ai-help.err { color: var(--accent-2); }
+
+.ai-check {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 12px 0 0;
+  font-size: 15px;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.ai-check input { margin-top: 3px; accent-color: var(--accent); }
+
+.ai-radios { display: grid; gap: 10px; }
+
+.ai-radio {
+  display: flex;
+  gap: 11px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: border-color var(--t), background var(--t);
+}
+
+.ai-radio:hover { border-color: var(--accent); }
+.ai-radio input { margin-top: 4px; accent-color: var(--accent); }
+.ai-radio strong { display: block; color: var(--ink); font-weight: 600; }
+.ai-radio em {
+  display: block;
+  margin-top: 3px;
+  font-style: normal;
+  font-size: 13px;
+  color: var(--ink-quiet);
+}
+
+.ai-group {
+  margin: 0 0 26px;
+  padding: 20px 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+}
+
+.ai-group legend {
+  padding: 0 8px;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 17px;
+  color: var(--ink);
+}
+
+.ai-group .ai-field:last-child { margin-bottom: 0; }
+
+.ai-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0 0 14px;
+}
+
+@media (max-width: 640px) {
+  .ai-read-body { padding: 22px 20px; }
+  .ai-row { flex-direction: column; align-items: stretch; }
+}

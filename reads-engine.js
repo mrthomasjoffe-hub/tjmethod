@@ -309,6 +309,27 @@
       Object.fromEntries(Object.entries(scores).map(([k, v]) => [v.name, `${v.score}/${v.max}`]))
     );
     form.dataset.overall = overall;
+
+    // Scoring is done and final by this point. Anything listening (ai-read.js)
+    // gets the numbers to write about — it never gets to change them.
+    document.dispatchEvent(new CustomEvent("tjmethod:results", {
+      detail: {
+        readId: read.id,
+        readName: read.name,
+        tagline: read.tagline,
+        overall,
+        band: helpers.band(overall),
+        dimensions: Object.entries(scores).map(([key, s]) => ({
+          name: s.name,
+          score: s.score,
+          max: s.max,
+          pct: Math.round((s.score / s.max) * 100),
+          verdict: helpers.interpretDim(s.score, s.max),
+          headline: dimensionHeadline(read.id, key),
+          desc: dimensionDesc(read.id, key)
+        }))
+      }
+    }));
   }
 
   // ---------- email export ----------
@@ -335,6 +356,9 @@
       `Email: ${email}\n\n` +
       `Overall reading: ${overall}%\n\n` +
       `Dimensions:\n${scoresLine}\n\n` +
+      (form.dataset.aiHeadline
+        ? `The long read:\n  ${form.dataset.aiHeadline}\n  If you do one thing: ${form.dataset.aiOneThing}\n\n`
+        : "") +
       `Context:\n${context || "(none provided)"}\n\n` +
       `— Sent from The Method Reads`
     );

@@ -188,6 +188,40 @@
 
       // stash for email
       form.dataset.scoresJson = JSON.stringify(scores);
+
+      // Scoring is done and final by this point. Anything listening
+      // (ai-read.js) gets the numbers to write about, never to change.
+      const entries = Object.entries(scores);
+      const overall = Math.round(
+        (entries.reduce((sum, [, v]) => sum + v, 0) / (entries.length * 10)) * 100
+      );
+      document.dispatchEvent(new CustomEvent("tjmethod:results", {
+        detail: {
+          readId: "leader",
+          readName: "The 5 Cs Readiness Snapshot",
+          tagline: "Where is your transition strong — and where is it leaking energy?",
+          overall,
+          band: bandFor(overall),
+          dimensions: entries.map(([name, v]) => ({
+            name,
+            score: v,
+            max: 10,
+            pct: Math.round((v / 10) * 100),
+            verdict: interpret(v),
+            headline: "",
+            desc: ""
+          }))
+        }
+      }));
+    }
+
+    // Same thresholds summaryText() uses, given a tag so a draft can
+    // match the band's tone without re-deriving it.
+    function bandFor(overall) {
+      if (overall >= 80) return { tag: "Solid",    line: "Your foundation is in good shape. The work now is sharpening, not rebuilding." };
+      if (overall >= 60) return { tag: "Steady",   line: "Steady, with one or two specific lenses pulling weight away from the rest." };
+      if (overall >= 40) return { tag: "Mixed",    line: "The signal is mixed. Energy is going into the work, but the system isn't reliably converting it." };
+      return { tag: "Strained", line: "This transition is asking more of you, or the organisation, than the current foundation can carry. That's a finding, not a failing." };
     }
 
     // ---------- Email results form ----------
@@ -211,6 +245,9 @@
         `Name: ${name}\n` +
         `Email: ${email}\n\n` +
         `Scores:\n${scoresLine}\n\n` +
+        (form.dataset.aiHeadline
+          ? `The long read:\n  ${form.dataset.aiHeadline}\n  If you do one thing: ${form.dataset.aiOneThing}\n\n`
+          : "") +
         `Context:\n${context || "(none provided)"}\n\n` +
         `— Sent from thetjmethod`
       );

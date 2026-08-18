@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<meta name="description" content="AI engine settings for The Method Reads. Configuration is stored in this browser only." />
+<title>AI settings — The TJ Method</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body class="survey-page">
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">
+      <span class="nav-mark">TJ</span>
+      <span class="nav-name">The&nbsp;TJ&nbsp;Method</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html#method">The method</a>
+      <a href="index.html#audience">Who I work with</a>
+      <a href="reads.html">The Reads</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact" class="nav-cta">Let&rsquo;s talk</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="survey-wrap">
+
+    <div class="survey-head">
+      <p class="eyebrow">Private settings</p>
+      <h1>AI engine</h1>
+      <p>Turn on the long-form draft that sits underneath a completed read.</p>
+    </div>
+
+    <div class="survey-card">
+
+      <section class="ai-note">
+        <p>
+          <strong>This is a per-browser setting.</strong> Everything below is stored in this
+          browser&rsquo;s local storage and nowhere else. It is not part of the site, it is
+          not shared with anyone who visits, and no key or answer is sent to any server
+          except the engine you choose here.
+        </p>
+        <p>
+          Visitors who haven&rsquo;t configured an engine see the scored read exactly as it is
+          today. Nothing about their experience changes.
+        </p>
+        <p class="ai-note-warn">
+          <strong>A local model only runs where it is installed.</strong> <code>localhost</code>
+          in a browser means <em>that visitor&rsquo;s own machine</em> &mdash; so Ollama drafts
+          reads for you, on your laptop, and not for anyone else. To offer local drafting to
+          visitors you would need to put Ollama behind a proxy on a machine that stays online.
+        </p>
+      </section>
+
+      <form id="aiSettings" class="ai-form" novalidate>
+
+        <div class="ai-field">
+          <label class="ai-check">
+            <input type="checkbox" name="enabled" />
+            <span>Offer the long-form draft after a read is scored</span>
+          </label>
+        </div>
+
+        <div class="ai-field">
+          <span class="ai-label">Preferred engine</span>
+          <div class="ai-radios">
+            <label class="ai-radio">
+              <input type="radio" name="provider" value="ollama" />
+              <span>
+                <strong>Ollama (local)</strong>
+                <em>Runs on this machine &middot; free &middot; offline &middot; nothing leaves the laptop</em>
+              </span>
+            </label>
+            <label class="ai-radio">
+              <input type="radio" name="provider" value="claude" />
+              <span>
+                <strong>Claude API</strong>
+                <em>Best quality &middot; needs an API key &middot; billed per use</em>
+              </span>
+            </label>
+          </div>
+          <label class="ai-check">
+            <input type="checkbox" name="fallback" />
+            <span>If the preferred engine isn&rsquo;t reachable, use the other one</span>
+          </label>
+        </div>
+
+        <fieldset class="ai-group">
+          <legend>Ollama</legend>
+          <div class="ai-field">
+            <label class="ai-label" for="ollamaUrl">Ollama URL</label>
+            <input type="text" id="ollamaUrl" name="ollamaUrl" placeholder="http://localhost:11434" />
+            <p class="ai-help">
+              The default is right for a standard local install. If you open this page over
+              https, Ollama also needs <code>OLLAMA_ORIGINS</code> set to allow this site.
+            </p>
+          </div>
+          <div class="ai-field">
+            <label class="ai-label" for="ollamaModel">Model</label>
+            <div class="ai-row">
+              <input type="text" id="ollamaModel" name="ollamaModel" placeholder="e.g. llama3.1:8b" />
+              <button type="button" class="btn btn-back" id="refreshModels">&#8635; Installed models</button>
+            </div>
+            <p class="ai-help">
+              Structured output needs a reasonably capable model &mdash; 8B or larger.
+              Anything smaller tends to return malformed JSON.
+            </p>
+            <p class="ai-help err" id="modelsNote" hidden></p>
+          </div>
+        </fieldset>
+
+        <fieldset class="ai-group">
+          <legend>Claude</legend>
+          <div class="ai-field">
+            <label class="ai-label" for="apiKey">Anthropic API key</label>
+            <input type="password" id="apiKey" name="apiKey" placeholder="sk-ant-…" autocomplete="off" />
+            <p class="ai-help">
+              Create one at console.anthropic.com. Stored in this browser only, and sent
+              only to Anthropic.
+            </p>
+          </div>
+          <div class="ai-field">
+            <label class="ai-label" for="model">Model</label>
+            <select id="model" name="model"></select>
+          </div>
+        </fieldset>
+
+        <div class="ai-actions">
+          <button type="submit" class="btn btn-primary">Save settings</button>
+          <button type="button" class="btn btn-back" id="testConn">Test connection</button>
+          <button type="button" class="btn btn-back" id="clearAll">Clear everything</button>
+        </div>
+
+        <p class="form-note" id="aiNote" aria-live="polite"></p>
+      </form>
+
+    </div>
+
+    <p class="center muted" style="font-size:13px; margin-top:24px;">
+      <a href="reads.html">&larr; Back to the Reads</a>
+    </p>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="foot-left">
+      <p class="foot-brand">The TJ Method <span class="foot-sep">&middot;</span> Pty Ltd</p>
+      <p class="foot-small">Certified Transition Coaching. Calm clarity for leaders in transition.</p>
+    </div>
+    <div class="foot-right">
+      <p class="foot-small">
+        <a href="mailto:thomas@thetjmethod.com.au">thomas@thetjmethod.com.au</a>
+        &nbsp;&middot;&nbsp;
+        <a href="tel:+61473833625">+61 473 833 625</a>
+        &nbsp;&middot;&nbsp;
+        <a href="https://www.linkedin.com/in/thomasjoffe" target="_blank" rel="noopener">LinkedIn</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="ai.js"></script>
+<script>
+(function () {
+  const form   = document.getElementById("aiSettings");
+  const note   = document.getElementById("aiNote");
+  const mNote  = document.getElementById("modelsNote");
+  const select = document.getElementById("model");
+
+  // Populate the Claude model list from the engine layer, so the two
+  // never drift apart.
+  select.innerHTML = TJAI.CLAUDE_MODELS
+    .map((m) => `<option value="${m.id}">${m.label}</option>`).join("");
+
+  function load() {
+    const s = TJAI.settings();
+    form.enabled.checked  = s.enabled;
+    form.fallback.checked = s.fallback;
+    Array.from(form.provider).forEach((r) => { r.checked = r.value === s.provider; });
+    form.ollamaUrl.value   = s.ollamaUrl;
+    form.ollamaModel.value = s.ollamaModel;
+    form.apiKey.value      = s.apiKey;
+    form.model.value       = s.model;
+  }
+
+  function read() {
+    return {
+      enabled:     form.enabled.checked,
+      fallback:    form.fallback.checked,
+      provider:    (Array.from(form.provider).find((r) => r.checked) || {}).value || "ollama",
+      ollamaUrl:   form.ollamaUrl.value.trim(),
+      ollamaModel: form.ollamaModel.value.trim(),
+      apiKey:      form.apiKey.value.trim(),
+      model:       form.model.value
+    };
+  }
+
+  function say(msg, ok) {
+    note.textContent = msg;
+    note.className = "form-note " + (ok ? "ok" : "err");
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    TJAI.saveSettings(read());
+    say("Saved. Complete a read and the long-form draft will be offered underneath it.", true);
+  });
+
+  document.getElementById("testConn").addEventListener("click", async () => {
+    TJAI.saveSettings(read());
+    say("Testing…", true);
+    try {
+      say(await TJAI.testConnection(), true);
+    } catch (err) {
+      say(err.message, false);
+    }
+  });
+
+  document.getElementById("refreshModels").addEventListener("click", async () => {
+    mNote.hidden = true;
+    try {
+      const models = await TJAI.listOllamaModels(form.ollamaUrl.value);
+      if (models.length === 0) {
+        mNote.textContent = "Ollama is running, but no models are installed. Run: ollama pull llama3.1:8b";
+        mNote.hidden = false;
+        return;
+      }
+      // Swap the free-text field for a picker once we know what's installed.
+      const picker = document.createElement("select");
+      picker.id = "ollamaModel";
+      picker.name = "ollamaModel";
+      picker.innerHTML = models.map((m) => `<option value="${m}">${m}</option>`).join("");
+      const current = form.ollamaModel.value.trim();
+      if (models.includes(current)) picker.value = current;
+      form.ollamaModel.replaceWith(picker);
+    } catch (err) {
+      mNote.textContent = err.message;
+      mNote.hidden = false;
+    }
+  });
+
+  document.getElementById("clearAll").addEventListener("click", () => {
+    TJAI.saveSettings(TJAI.DEFAULTS);
+    load();
+    say("Cleared. The key and model settings are gone from this browser.", true);
+  });
+
+  load();
+})();
+</script>
+</body>
+</html>

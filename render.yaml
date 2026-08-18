@@ -28,3 +28,6 @@ services:
       - type: rewrite
         source: /read
         destination: /read.html
+      - type: rewrite
+        source: /ai
+        destination: /ai.html
