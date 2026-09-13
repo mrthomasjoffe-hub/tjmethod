@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Connect the local AI · The Foundry</title>
+    <meta name="theme-color" content="#1c1b17" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <style>
+      :root {
+        --ink: #1c1b17; --paper: #f7f5f1; --card: #fff; --line: #e3ddd2;
+        --copper: #c08a3e; --copper-dark: #9a6b2e; --slate: #6b6a63;
+        --green: #2e7d5b; --red: #a63d2f; --amber: #b8860b; --radius: 10px;
+        --sans: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: var(--sans); background: var(--paper); color: var(--ink);
+        font-size: 15px; line-height: 1.55; -webkit-font-smoothing: antialiased;
+        padding: calc(20px + env(safe-area-inset-top)) calc(16px + env(safe-area-inset-right))
+                 calc(40px + env(safe-area-inset-bottom)) calc(16px + env(safe-area-inset-left));
+      }
+      .wrap { max-width: 560px; margin: 0 auto; }
+      .kicker { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--copper); font-weight: 600; }
+      h1 { font-size: 26px; line-height: 1.2; margin: 6px 0 8px; }
+      .sub { color: var(--slate); margin-bottom: 22px; }
+      .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; margin-bottom: 16px; }
+      .card h2 { font-size: 15px; margin-bottom: 12px; }
+      label { display: block; font-weight: 600; font-size: 13px; margin-bottom: 6px; }
+      input, select {
+        width: 100%; font-family: inherit; font-size: 16px; padding: 11px 12px;
+        border: 1px solid var(--line); border-radius: var(--radius); background: #fff; color: var(--ink);
+      }
+      input:focus, select:focus { outline: none; border-color: var(--copper); }
+      .help { font-size: 12.5px; color: var(--slate); margin-top: 6px; }
+      .field { margin-bottom: 14px; }
+      .row { display: flex; gap: 10px; flex-wrap: wrap; }
+      .btn {
+        flex: 1 1 150px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center;
+        font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer;
+        border-radius: var(--radius); border: 1px solid var(--line); background: #fff; color: var(--ink);
+        padding: 0 16px; text-decoration: none;
+      }
+      .btn.primary { background: var(--ink); border-color: var(--ink); color: #fff; }
+      .btn.copper { background: var(--copper-dark); border-color: var(--copper-dark); color: #fff; }
+      .btn[disabled] { opacity: .5; cursor: default; }
+      .note { border-left: 3px solid var(--line); padding: 10px 0 10px 12px; font-size: 13.5px; color: var(--slate); margin-top: 12px; }
+      .note.warn { border-left-color: var(--amber); color: var(--ink); }
+      .note.bad { border-left-color: var(--red); color: var(--ink); }
+      .note.good { border-left-color: var(--green); color: var(--ink); }
+      .note b { font-weight: 600; }
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px;
+        background: #efece5; padding: 1px 5px; border-radius: 4px; word-break: break-all;
+      }
+      pre { background: var(--ink); color: #e8e4da; padding: 12px; border-radius: var(--radius); overflow-x: auto; font-size: 12.5px; margin-top: 8px; }
+      .facts { list-style: none; font-size: 13.5px; }
+      .facts li { display: flex; gap: 8px; padding: 5px 0; border-bottom: 1px solid var(--line); }
+      .facts li:last-child { border-bottom: 0; }
+      .facts span:first-child { color: var(--slate); flex: 0 0 42%; }
+      .facts span:last-child { flex: 1; word-break: break-all; }
+      .foot { text-align: center; font-size: 13px; color: var(--slate); margin-top: 8px; }
+      .foot a { color: var(--copper-dark); }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="kicker">The Foundry</div>
+      <h1>Connect the local AI</h1>
+      <p class="sub">
+        Point this phone at the Ollama running on your computer, check it answers,
+        then save it into The Foundry.
+      </p>
+
+      <div class="card">
+        <h2>This device</h2>
+        <ul class="facts" id="facts"></ul>
+        <div id="secure-note"></div>
+      </div>
+
+      <div class="card">
+        <h2>Ollama address</h2>
+        <div class="field">
+          <label for="url">URL</label>
+          <input id="url" type="url" inputmode="url" autocapitalize="off" autocorrect="off"
+                 spellcheck="false" placeholder="http://192.168.1.20:11434" />
+          <div class="help">
+            Your computer's address on the network, not <code>localhost</code>.
+            On the Mac: System Settings, Network, and read the IP under the active connection.
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn primary" id="test" type="button">Test connection</button>
+        </div>
+        <div id="result"></div>
+      </div>
+
+      <div class="card" id="model-card" hidden>
+        <h2>Model</h2>
+        <div class="field">
+          <label for="model">Use this model</label>
+          <select id="model"></select>
+        </div>
+        <div class="row">
+          <button class="btn copper" id="save" type="button">Save into The Foundry</button>
+          <a class="btn" href="./index.html">Open The Foundry</a>
+        </div>
+        <div id="saved"></div>
+      </div>
+
+      <p class="foot"><a href="./index.html">Back to The Foundry</a></p>
+    </div>
+
+    <script>
+      (function () {
+        'use strict';
+
+        var KEY = 'foundry.settings.v1';
+        var DEFAULTS = {
+          provider: 'claude', apiKey: '', model: 'claude-opus-4-8',
+          ollamaUrl: 'http://localhost:11434', ollamaModel: ''
+        };
+
+        function read() {
+          try {
+            var raw = localStorage.getItem(KEY);
+            return raw ? Object.assign({}, DEFAULTS, JSON.parse(raw)) : Object.assign({}, DEFAULTS);
+          } catch (e) {
+            return Object.assign({}, DEFAULTS);
+          }
+        }
+
+        function write(patch) {
+          var next = Object.assign(read(), patch);
+          localStorage.setItem(KEY, JSON.stringify(next));
+          return next;
+        }
+
+        var $ = function (id) { return document.getElementById(id); };
+        var settings = read();
+
+        // --- what this device can see -------------------------------------
+        var standalone = window.matchMedia('(display-mode: standalone)').matches ||
+                         window.navigator.standalone === true;
+        $('facts').innerHTML = [
+          ['Page served from', location.origin],
+          ['Secure context', window.isSecureContext ? 'yes (https)' : 'no (plain http)'],
+          ['Launched from', standalone ? 'home screen' : 'the browser'],
+          ['Saved engine', settings.provider]
+        ].map(function (r) {
+          return '<li><span>' + r[0] + '</span><span>' + r[1] + '</span></li>';
+        }).join('');
+
+        // An https page cannot call a plain-http address. Say so up front
+        // rather than letting the test fail with a blank network error.
+        if (location.protocol === 'https:') {
+          $('secure-note').innerHTML =
+            '<div class="note warn">This page is on <b>https</b>. Safari blocks it from calling a ' +
+            'plain <code>http://</code> address, so a LAN Ollama will not answer from here. ' +
+            'Either open The Foundry over http on your network, or put Ollama behind https ' +
+            '(Tailscale does this in a couple of commands). Both are written up in ' +
+            '<code>IPHONE.md</code>.</div>';
+        } else {
+          $('secure-note').innerHTML =
+            '<div class="note good">This page is on plain <b>http</b>, so it can talk to an ' +
+            '<code>http://</code> Ollama on the same network.</div>';
+        }
+
+        // Seed the field: a saved LAN address wins, otherwise guess from the
+        // host serving this page, since Ollama usually runs on that machine.
+        var seed = settings.ollamaUrl;
+        if (!seed || /localhost|127\.0\.0\.1/.test(seed)) {
+          seed = location.hostname && !/localhost|127\.0\.0\.1/.test(location.hostname)
+            ? location.protocol + '//' + location.hostname + ':11434'
+            : 'http://192.168.1.20:11434';
+        }
+        $('url').value = seed;
+
+        function normalise(value) {
+          var v = (value || '').trim().replace(/\/+$/, '');
+          if (!v) return '';
+          if (!/^https?:\/\//i.test(v)) v = 'http://' + v;
+          if (!/:\d+$/.test(v.replace(/^https?:\/\//i, ''))) v += ':11434';
+          return v;
+        }
+
+        function show(el, cls, html) { el.innerHTML = '<div class="note ' + cls + '">' + html + '</div>'; }
+
+        var models = [];
+
+        $('test').addEventListener('click', function () {
+          var url = normalise($('url').value);
+          if (!url) { show($('result'), 'bad', 'Enter an address first.'); return; }
+          $('url').value = url;
+          $('test').disabled = true;
+          show($('result'), '', 'Testing ' + url + ' …');
+
+          var timer = new AbortController();
+          var bail = setTimeout(function () { timer.abort(); }, 8000);
+
+          fetch(url + '/api/tags', { signal: timer.signal })
+            .then(function (res) {
+              if (!res.ok) throw new Error('Ollama answered with HTTP ' + res.status);
+              return res.json();
+            })
+            .then(function (data) {
+              models = (data && data.models) || [];
+              if (!models.length) {
+                show($('result'), 'warn',
+                  'Connected, but Ollama has no models yet. On your computer run ' +
+                  '<code>ollama pull llama3.1</code> and test again.');
+                $('model-card').hidden = true;
+                return;
+              }
+              show($('result'), 'good',
+                'Connected. ' + models.length + ' model' + (models.length === 1 ? '' : 's') + ' available.');
+              $('model').innerHTML = models.map(function (m) {
+                return '<option value="' + m.name + '">' + m.name + '</option>';
+              }).join('');
+              if (settings.ollamaModel && models.some(function (m) { return m.name === settings.ollamaModel; })) {
+                $('model').value = settings.ollamaModel;
+              }
+              $('model-card').hidden = false;
+            })
+            .catch(function (err) {
+              var why = err && err.name === 'AbortError'
+                ? 'Nothing answered within 8 seconds.'
+                : 'Could not reach it (' + (err && err.message ? err.message : 'network error') + ').';
+              show($('result'), 'bad',
+                why + ' The usual causes, in order:' +
+                '<br><br><b>1. Ollama is only listening to itself.</b> Restart it so it listens on the network ' +
+                'and allows this page:' +
+                '<pre>OLLAMA_HOST=0.0.0.0 \\\n  OLLAMA_ORIGINS=' + location.origin + ' \\\n  ollama serve</pre>' +
+                '<b>2. Wrong address.</b> It must be the computer\'s IP on your network, not localhost.' +
+                '<br><br><b>3. Different networks.</b> The phone and the computer have to be on the same Wi-Fi.' +
+                (location.protocol === 'https:'
+                  ? '<br><br><b>4. Mixed content.</b> This page is on https and cannot call http at all.'
+                  : ''));
+              $('model-card').hidden = true;
+            })
+            .then(function () { clearTimeout(bail); $('test').disabled = false; });
+        });
+
+        $('save').addEventListener('click', function () {
+          var next = write({
+            provider: 'ollama',
+            ollamaUrl: normalise($('url').value),
+            ollamaModel: $('model').value
+          });
+          settings = next;
+          show($('saved'), 'good',
+            'Saved. The Foundry will draft with <b>' + next.ollamaModel + '</b> on <code>' +
+            next.ollamaUrl + '</code>.');
+        });
+      })();
+    </script>
+  </body>
+</html>

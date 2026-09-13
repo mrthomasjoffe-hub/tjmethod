@@ -1,0 +1,238 @@
+/* ---------------------------------------------------------------------------
+   Phone layout for The Foundry.
+   Loaded after the built stylesheet, so it only ever adds overrides — the
+   desktop build is untouched above 760px.
+   --------------------------------------------------------------------------- */
+
+:root {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+}
+
+/* The home-screen app has no browser chrome, so nothing should rubber-band. */
+html { -webkit-text-size-adjust: 100%; }
+
+@media (max-width: 760px) {
+  html, body, #root { height: auto; min-height: 100%; }
+  body { overflow-x: hidden; }
+
+  .shell { display: block; min-height: 100dvh; }
+
+  /* Sidebar becomes a drawer, off-canvas until the menu button is tapped. */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 70;
+    width: min(80vw, 300px);
+    height: 100dvh;
+    padding-top: calc(22px + var(--safe-top));
+    padding-bottom: calc(22px + var(--safe-bottom));
+    padding-left: var(--safe-left);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    transform: translateX(-102%);
+    transition: transform .22s ease;
+    box-shadow: 0 0 40px rgba(0, 0, 0, .4);
+  }
+  body.nav-open .sidebar { transform: translateX(0); }
+
+  .sidebar nav a { padding-top: 12px; padding-bottom: 12px; }
+
+  .nav-scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    background: rgba(28, 27, 23, .5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .22s ease;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+  }
+  body.nav-open .nav-scrim { opacity: 1; pointer-events: auto; }
+
+  .main { width: 100%; }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    padding-top: calc(10px + var(--safe-top));
+    padding-left: calc(64px + var(--safe-left));
+    padding-right: calc(14px + var(--safe-right));
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar .crumb {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .topbar .user { flex-shrink: 0; }
+  .topbar .user span { display: none; }
+
+  .nav-toggle {
+    position: fixed;
+    z-index: 80;
+    top: calc(10px + var(--safe-top));
+    left: calc(14px + var(--safe-left));
+    width: 40px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--card);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .nav-toggle i {
+    display: block;
+    width: 17px;
+    height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: transform .2s ease, opacity .2s ease;
+  }
+  /* While the drawer is open the button rides its right edge, clear of the
+     wordmark, and inverts to sit on the dark panel. */
+  body.nav-open .nav-toggle {
+    left: calc(min(80vw, 300px) - 52px + var(--safe-left));
+    background: transparent;
+    border-color: #3a382f;
+  }
+  body.nav-open .nav-toggle i { background: #d9d5ca; }
+  body.nav-open .nav-toggle i:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  body.nav-open .nav-toggle i:nth-child(2) { opacity: 0; }
+  body.nav-open .nav-toggle i:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  .content {
+    padding: 18px 14px calc(32px + var(--safe-bottom));
+    padding-left: calc(14px + var(--safe-left));
+    padding-right: calc(14px + var(--safe-right));
+  }
+
+  h1.page { font-size: 25px; line-height: 1.2; }
+  .numbered h2 { font-size: 19px; }
+
+  /* One column everywhere — two 50% cards on a 390px screen help nobody. */
+  .grid, .grid.cols-2, .grid.cols-3, .grid.cols-4 { grid-template-columns: 1fr; }
+
+  .card { padding: 16px; }
+
+  /* 16px stops iOS zooming the whole page when a field takes focus. */
+  input, select, textarea,
+  .field input, .field select, .field textarea { font-size: 16px; }
+  .field textarea { min-height: 120px; }
+
+  /* Comfortable thumb targets. */
+  .btn {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .btn.small { min-height: 36px; }
+
+  .row { flex-wrap: wrap; }
+  .row > .btn { flex: 1 1 auto; }
+  .spread { flex-wrap: wrap; gap: 10px; }
+  .wizard-actions { flex-wrap: wrap; gap: 10px; }
+  .wizard-actions .btn { flex: 1 1 140px; }
+
+  /* Wide tables scroll sideways inside themselves instead of the page. */
+  table.data {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+
+  /* Step rail and tab strip scroll instead of wrapping into a tall block. */
+  .steps, .tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .steps::-webkit-scrollbar, .tabs::-webkit-scrollbar { display: none; }
+  .steps .step, .tabs a { flex: 0 0 auto; white-space: nowrap; }
+
+  .artifact-head { flex-wrap: wrap; gap: 10px; }
+  .phases { grid-template-columns: 1fr; }
+
+  .login-wrap { padding: 24px 16px calc(24px + var(--safe-bottom)); }
+  .login-card { padding: 22px 18px; }
+
+  .doc { padding: 16px; }
+  .doc pre, .doc code { white-space: pre-wrap; word-break: break-word; }
+}
+
+/* Launched from the home screen: no browser chrome to lean on. */
+@media (display-mode: standalone) {
+  body { overscroll-behavior-y: none; }
+  .sidebar .foot { padding-bottom: calc(8px + var(--safe-bottom)); }
+}
+
+/* The built stylesheet emits its own @media block above the base rules, so
+   `.login-hero{display:none}` loses to the later `.login-hero{display:flex}`
+   and the sign-in card ends up a full screen down. This sheet loads after the
+   bundle, so the same rules land the right way round. */
+@media (max-width: 860px) {
+  .login-wrap { grid-template-columns: 1fr; }
+  .login-hero { display: none; }
+}
+
+/* 100vh on iOS measures against the largest viewport, which leaves a dead
+   strip under the fold. dvh tracks the visible area instead. */
+@media (max-width: 760px) {
+  .shell { min-height: 100dvh; }
+  .login-wrap { min-height: 100dvh; }
+}
+
+/* Small banner shown when a new deploy has been cached and is ready. */
+.sw-update {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: #f2efe8;
+  font-size: 14px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, .28);
+}
+.sw-update button {
+  margin-left: auto;
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--copper);
+  color: #1c1b17;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+@media (min-width: 761px) {
+  .nav-toggle, .nav-scrim { display: none !important; }
+}

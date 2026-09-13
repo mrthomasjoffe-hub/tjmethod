@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Paste these into the app target's Info tab (or merge into Info.plist).
+
+  NSAllowsLocalNetworking lets the app talk to plain-http addresses on your own
+  network, which is what Ollama is. It does not open up the public internet.
+
+  NSLocalNetworkUsageDescription is what iOS shows the first time the app looks
+  for your computer. Without it the lookup is refused.
+-->
+<plist version="1.0">
+<dict>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsLocalNetworking</key>
+        <true/>
+    </dict>
+    <key>NSLocalNetworkUsageDescription</key>
+    <string>The Foundry connects to the AI model running on your own computer.</string>
+    <key>UIRequiresFullScreen</key>
+    <false/>
+    <key>UIStatusBarStyle</key>
+    <string>UIStatusBarStyleDefault</string>
+</dict>
+</plist>

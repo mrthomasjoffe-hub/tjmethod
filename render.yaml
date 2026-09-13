@@ -12,6 +12,13 @@ services:
       - path: /*
         name: X-Frame-Options
         value: SAMEORIGIN
+      # A cached service worker pins the app to an old deploy, so never cache it.
+      - path: /foundry/sw.js
+        name: Cache-Control
+        value: no-cache, no-store, must-revalidate
+      - path: /foundry/manifest.webmanifest
+        name: Cache-Control
+        value: no-cache
       - path: /*
         name: X-Content-Type-Options
         value: nosniff
@@ -22,6 +29,15 @@ services:
       - type: rewrite
         source: /survey
         destination: /survey.html
+      - type: rewrite
+        source: /foundry
+        destination: /foundry/index.html
+      - type: rewrite
+        source: /app
+        destination: /foundry/index.html
+      - type: rewrite
+        source: /connect
+        destination: /foundry/connect.html
       - type: rewrite
         source: /reads
         destination: /reads.html
