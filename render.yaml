@@ -31,3 +31,6 @@ services:
       - type: rewrite
         source: /the-foundry
         destination: /the-foundry.html
+      - type: rewrite
+        source: /cost
+        destination: /cost.html

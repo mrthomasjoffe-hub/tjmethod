@@ -193,15 +193,123 @@ layout, in your existing type and colour.
 
 ---
 
+## 3b. Second pass — the money
+
+The first pass named the symptoms. It did not put a price on them, and it did not name
+the mechanism underneath all eight. This pass does both.
+
+### The 60/40 argument
+
+> Change managers spend around sixty per cent of their time producing documents.
+> That leaves forty per cent for the only part that changes behaviour.
+
+This is now the lead on the Foundry page, the lead on the homepage band, and the whole
+reason for the new costing page. It works better than the symptom list alone because it
+reframes the purchase. The Foundry is not an expense. It is a reallocation of money you
+are already spending, from formatting to people, at the same headcount.
+
+It also defuses the objection that kills change software in the room, which is *"is this
+replacing my change manager?"* No. It gives them their job back. The page says that
+explicitly, twice.
+
+### New page: `cost.html`, routed at `/cost`
+
+There was no costing page in the repository. The URL you sent, `thetjmethod.com.au/#/read`,
+resolves to the Reads runner, and the live site is not reachable from here, so I built
+the costing page rather than guess at one. If you already have something live at another
+address, say the word and I will repoint every link.
+
+It carries a **live calculator**. Seven inputs, recalculating as you type, running
+entirely in the browser with nothing stored or sent.
+
+**The change team cost**
+- Change FTE on the programme × fully loaded annual cost × months ÷ 12
+- 60% of that is what you are paying for document production
+- 75% of that figure is shown as recoverable, deliberately not 100%, because reviewing
+  and editing a generated document still takes real time and should
+
+**The bigger number, the productivity dip**
+- People impacted × (employment cost ÷ 260 weekdays) × dip % × dip days
+- Halving the dip is shown as the saving
+
+On the defaults, two change people on a twelve-month programme touching four hundred
+staff:
+
+| | |
+|---|---|
+| Change team cost | $360,000 |
+| Of that, producing documents | $216,000 |
+| Recoverable and redirected to people | $162,000 |
+| Lost productivity around go-live | $876,923 |
+| Saved by halving that dip | $438,462 |
+| **What better preparation is worth** | **$600,462** |
+
+The page then says the line that matters: the invisible cost is **4.1 times** the visible
+one. The change budget argument is happening at the wrong end of the problem. That ratio
+recalculates live, so it adapts to whatever numbers they put in.
+
+Every assumption is printed under the calculator, including that the 60% is your own
+field observation rather than a vendor statistic. That is a deliberate choice. An
+unsourced percentage on a B2B page invites a challenge you do not want to have in a
+sales conversation. Owning it as twenty years of observation is unattackable, and it is
+also true.
+
+### Every symptom now carries a price
+
+Each of the eight symptoms gained a **What it costs** line in a gold-ruled block. A
+sample:
+
+- *One high-influence detractor left alone for a quarter can cost more than the entire
+  change budget, because their team takes the cue and quietly stops.*
+- *A day a fortnight for a year is twenty-six days of senior change time. Put your own
+  loaded rate against that and you have the standing price of one recurring slide deck.*
+- *Fatigue rarely shows up as resistance. It shows up as a plausible ten per cent drag
+  that lasts two quarters, lands on the operating line rather than the project line, and
+  never gets attributed to the change.*
+- *A missed consultation obligation does not slow a go-live. It stops one.*
+
+### New section: "Written in their words, not in yours"
+
+Your point about people understanding the impact in their own language is the strongest
+differentiator on the page, so it got its own section with a side-by-side.
+
+**What the project writes:** *"We are implementing an integrated cloud ERP with a digital
+rostering module, delivering a single source of truth across production, stock and
+finance."*
+
+**What they need to hear:** *"From 3 March your roster comes to your phone two weeks
+ahead instead of going up on the board on Friday. You will clock on at the tablet by the
+door. Your pay should stop needing corrections. For the first fortnight Sam is on the
+floor every shift if it goes wrong."*
+
+The mechanism is already in your build and I pointed at it rather than inventing
+anything: the impact register is populated from generated interview scripts and from
+as-is / to-be document comparison, and the comms are drafted from that register. So the
+words come from the people, not from the project's description of itself.
+
+The section closes with the honest note, which is also the best sales line on the site:
+
+> The interview cannot be automated, and it should not be. The Foundry does not replace
+> that hour. It takes the sixty per cent off the desk so the hour can happen.
+
+### What the 40% buys
+
+The costing page has a section walking through where the reclaimed time goes, one block
+each for the project, behaviour change, training, stakeholder analysis, and the people
+themselves. Each one argues why that item needs a human and cannot be generated.
+
+---
+
 ## 4. Files touched
 
 | File | Change |
 |---|---|
-| `the-foundry.html` | New. The full sales page. |
+| `the-foundry.html` | New. The full sales page. Second pass added the money framing, a cost line on all eight symptoms, the 60/40 section and the "in their words" section. |
+| `cost.html` | New. The 60/40 costing page with the live calculator. Routed at `/cost`. |
 | `index.html` | Foundry nav link, hero bridging line and new button, three "The tell" lines in the problem section, new Foundry band. |
 | `reads.html` | Foundry nav link. |
-| `styles.css` | New components appended at the end: `.fdry-hero`, `.sympt-list`, `.fix`, `.deliv`, `.econ`. Nothing existing was modified. |
-| `render.yaml` | Clean route added for `/the-foundry`. |
+| `styles.css` | New components appended at the end: `.fdry-hero`, `.sympt-list`, `.fix`, `.deliv`, `.econ`, then `.sympt-cost`, `.split`, `.calc`, `.words`, `.cost-stats`. Nothing existing was modified. |
+| `render.yaml` | Clean routes added for `/the-foundry` and `/cost`. |
 
 The demo app at `/foundry/` was not touched. Every link you have already shared still works.
 
@@ -211,4 +319,32 @@ The demo app at `/foundry/` was not touched. Every link you have already shared 
 python3 -m http.server 8000
 ```
 
-Then open `http://localhost:8000/the-foundry.html` and `http://localhost:8000/index.html`.
+Then open `http://localhost:8000/cost.html`, `http://localhost:8000/the-foundry.html`
+and `http://localhost:8000/index.html`.
+
+---
+
+## 6. Still open, after the second pass
+
+1. **Is the 60% yours to claim?** I have written it as your own observation, which is the
+   strongest version. If you would rather cite research, the closest published support is
+   Asana's Anatomy of Work Index, which found knowledge workers spend around sixty per
+   cent of their time on coordination and administration rather than skilled work. It is
+   adjacent rather than about change managers specifically, so citing it invites a
+   different argument. My recommendation is to keep it as yours.
+
+2. **The productivity dip defaults.** I set twenty per cent for six weeks. Those are
+   plausible and conservative, but they are mine. Yours will be better, and they are the
+   numbers a CFO will push on first.
+
+3. **The calculator is a lead magnet with no capture on it.** Right now someone can work
+   out that their programme is leaking six hundred thousand dollars and then close the
+   tab. An email field offering to send the figures through, or a link into a
+   conversation at the moment the big number appears, is the obvious next move. I left it
+   off deliberately because it changes the page from useful to transactional, and that is
+   your call to make, not mine.
+
+4. **The `/#/read` URL you sent.** That resolves to the Reads runner, not a costing page,
+   and the live site is blocked from this environment so I could not check what is
+   actually deployed there. If a costing page already exists somewhere, tell me where and
+   I will merge this into it instead of adding a second one.

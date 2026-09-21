@@ -1463,3 +1463,235 @@ p { margin: 0 0 1em; }
   font-size: 14px;
   color: var(--ink-quiet);
 }
+
+/* ============================================================
+   THE 60/40 COST CASE — cost.html + Foundry page additions
+   ============================================================ */
+
+/* ----- cost line under each symptom ----- */
+.sympt-cost {
+  margin: 14px 0 0;
+  padding-left: 14px;
+  border-left: 2px solid var(--accent);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 60ch;
+}
+.sympt-cost strong {
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-size: 12px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* ----- 60/40 split bar ----- */
+.split {
+  margin: 40px 0 0;
+  max-width: 760px;
+}
+.split-row { margin-bottom: 30px; }
+.split-lbl {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-quiet);
+  margin-bottom: 10px;
+}
+.split-lbl b { color: var(--ink); font-weight: 600; letter-spacing: 0.06em; }
+.split-bar {
+  display: flex;
+  height: 44px;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.split-seg {
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.split-waste { background: var(--cream-3); color: var(--ink-quiet); }
+.split-people { background: var(--accent); color: var(--white); }
+.split-cap {
+  margin-top: 10px;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* ----- calculator ----- */
+.calc {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+@media (min-width: 900px) { .calc { grid-template-columns: 1fr 1fr; gap: 48px; } }
+
+.calc-panel {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 28px 26px;
+}
+.calc-panel h3 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 19px;
+  font-weight: 500;
+  margin: 0 0 4px;
+}
+.calc-panel > p.calc-sub {
+  margin: 0 0 22px;
+  font-size: 14.5px;
+  color: var(--ink-quiet);
+  line-height: 1.6;
+}
+.calc-field { margin-bottom: 18px; }
+.calc-field label {
+  display: block;
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-bottom: 7px;
+  line-height: 1.45;
+}
+.calc-field input[type="number"] {
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  padding: 11px 13px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--cream);
+  color: var(--ink);
+}
+.calc-field input[type="number"]:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--white);
+}
+.calc-hint { font-size: 12.5px; color: var(--ink-quiet); margin: 5px 0 0; }
+
+.calc-out {
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: var(--r);
+  padding: 30px 28px;
+}
+.calc-out h3 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 19px;
+  font-weight: 500;
+  margin: 0 0 22px;
+  color: var(--cream);
+}
+.calc-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 18px;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(245,240,232,0.14);
+}
+.calc-line:last-of-type { border-bottom: 0; }
+.calc-line span {
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--cream-2);
+  max-width: 62%;
+}
+.calc-line b {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 500;
+  font-size: 20px;
+  white-space: nowrap;
+  color: var(--cream);
+}
+.calc-line.hero-line { padding: 20px 0; border-bottom: 1px solid rgba(245,240,232,0.14); }
+.calc-line.hero-line span { color: var(--cream); font-size: 15.5px; }
+.calc-line.hero-line b { font-size: clamp(28px, 4vw, 40px); color: #E8A54B; letter-spacing: -0.02em; }
+.calc-note {
+  margin: 22px 0 0;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--cream-3);
+  opacity: 0.85;
+}
+.calc-assume {
+  margin-top: 30px;
+  font-size: 14px;
+  color: var(--ink-quiet);
+  line-height: 1.7;
+  max-width: 72ch;
+}
+
+/* ----- their words vs your words ----- */
+.words {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2px;
+  margin-top: 36px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+@media (min-width: 820px) { .words { grid-template-columns: 1fr 1fr; } }
+.words-col { background: var(--white); padding: 28px 26px; }
+.words-col.is-theirs { background: var(--cream); }
+.words-tag {
+  font-size: 11.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0 0 14px;
+  color: var(--ink-quiet);
+}
+.words-col.is-theirs .words-tag { color: var(--accent); }
+.words-quote {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--ink);
+  margin: 0 0 16px;
+}
+.words-col:not(.is-theirs) .words-quote { color: var(--ink-quiet); }
+.words-read {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+/* ----- stat row on dark ----- */
+.cost-stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  margin-top: 40px;
+  max-width: 900px;
+}
+@media (min-width: 720px) { .cost-stats { grid-template-columns: repeat(3, 1fr); gap: 32px; } }
+.cost-stat .cost-num {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(40px, 5.5vw, 56px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 12px;
+}
+.cost-stat p { margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--ink-soft); }
+.cost-stat p strong { color: var(--ink); }

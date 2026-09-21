@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Change managers spend around sixty per cent of their time producing documents, not working with people. Put your own numbers in and see what that split is costing your programme. By The TJ Method." />
+<title>The 60/40 problem — what change busywork is costing you</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/">
+      <span class="nav-mark">TJ</span>
+      <span class="nav-name">The&nbsp;TJ&nbsp;Method</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#split">The 60/40 split</a>
+      <a href="#calculator">The calculator</a>
+      <a href="#dip">The bigger number</a>
+      <a href="the-foundry.html">The Foundry</a>
+      <a href="/#contact" class="nav-cta">Let&rsquo;s talk</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="fdry-hero">
+  <div class="container hero-inner">
+    <p class="eyebrow">The 60/40 problem &middot; The cost of change busywork</p>
+    <h1>You are paying change people to <em>format</em>.</h1>
+    <p class="lede">
+      Around sixty per cent of a change manager's time goes on producing documents.
+      Strategy papers, stakeholder matrices, comms drafts, survey forms and the SteerCo
+      pack, built and rebuilt every time the scope moves. Which leaves forty per cent for
+      the only part that actually changes behaviour: being with the people the change
+      lands on.
+    </p>
+    <p class="lede">
+      You are not underfunding change. You are funding the wrong sixty per cent.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary btn-lg" href="#calculator">Put your numbers in</a>
+      <a class="btn btn-ghost btn-lg" href="the-foundry.html">See what fixes it</a>
+    </div>
+    <p class="hero-note">
+      Nothing is sent anywhere. The calculator runs in your browser and stores nothing.
+    </p>
+  </div>
+</section>
+
+<!-- THE SPLIT -->
+<section class="section section-cream" id="split">
+  <div class="container">
+    <p class="kicker">Where the time actually goes</p>
+    <h2 class="section-h">Sixty per cent of your change budget never touches a human being.</h2>
+    <p class="section-lede">
+      This is not a criticism of change managers. It is a description of the job as it is
+      currently resourced. The artifacts are mandatory, the deadlines are real, and
+      somebody has to build them. So the documents get done and the conversations get
+      squeezed.
+    </p>
+
+    <div class="split">
+      <div class="split-row">
+        <div class="split-lbl"><b>How a change role is spent today</b><span>Typical programme</span></div>
+        <div class="split-bar">
+          <div class="split-seg split-waste" style="width:60%">60% &nbsp;producing documents</div>
+          <div class="split-seg split-people" style="width:40%">40% &nbsp;people</div>
+        </div>
+        <p class="split-cap">
+          Writing the strategy. Building the stakeholder matrix in a spreadsheet. Drafting
+          and redrafting comms. Formatting the survey. Rebuilding the SteerCo pack every
+          fortnight. Redoing all of it when the scope moves, which it will.
+        </p>
+      </div>
+
+      <div class="split-row">
+        <div class="split-lbl"><b>How it is spent with The Foundry</b><span>Same headcount, same budget</span></div>
+        <div class="split-bar">
+          <div class="split-seg split-waste" style="width:15%">15%</div>
+          <div class="split-seg split-people" style="width:85%">85% &nbsp;people</div>
+        </div>
+        <p class="split-cap">
+          The documents are produced from one intake and regenerate when anything changes.
+          What is left is reviewing and editing them, which is judgement, and that is the
+          part you actually hired for.
+        </p>
+      </div>
+    </div>
+
+    <div class="cost-stats">
+      <div class="cost-stat">
+        <span class="cost-num">60%</span>
+        <p><strong>Spent producing.</strong> Documents, decks, matrices and forms. Necessary. Not the work that changes anyone's behaviour.</p>
+      </div>
+      <div class="cost-stat">
+        <span class="cost-num">40%</span>
+        <p><strong>Left for people.</strong> Interviews, sponsor conversations, coaching line managers, running the champion network, listening.</p>
+      </div>
+      <div class="cost-stat">
+        <span class="cost-num">100%</span>
+        <p><strong>Of adoption comes from that 40%.</strong> No one ever changed how they work because a strategy document was well formatted.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="section" id="calculator">
+  <div class="container">
+    <p class="kicker">Your numbers, not mine</p>
+    <h2 class="section-h">What is the split costing this programme?</h2>
+    <p class="section-lede">
+      Change the inputs to match your situation. Everything recalculates as you type.
+      These are estimates for a conversation, not a business case, and every assumption
+      is written down underneath so you can argue with it.
+    </p>
+
+    <form class="calc" id="calc" novalidate>
+
+      <div>
+        <div class="calc-panel">
+          <h3>Your change team</h3>
+          <p class="calc-sub">The people carrying the change workload on this programme.</p>
+
+          <div class="calc-field">
+            <label for="fte">Change people on the programme (full-time equivalent)</label>
+            <input type="number" id="fte" value="2" min="0.5" max="50" step="0.5" />
+          </div>
+
+          <div class="calc-field">
+            <label for="rate">Fully loaded annual cost per change person</label>
+            <input type="number" id="rate" value="180000" min="50000" max="600000" step="5000" />
+            <p class="calc-hint">Salary, on-costs and overhead. Use day rate &times; 220 for contractors.</p>
+          </div>
+
+          <div class="calc-field">
+            <label for="months">Programme duration, in months</label>
+            <input type="number" id="months" value="12" min="1" max="60" step="1" />
+          </div>
+        </div>
+
+        <div class="calc-panel" style="margin-top:24px;">
+          <h3>The people it lands on</h3>
+          <p class="calc-sub">Everyone whose day changes, not just the project team.</p>
+
+          <div class="calc-field">
+            <label for="people">People impacted by the change</label>
+            <input type="number" id="people" value="400" min="10" max="100000" step="10" />
+          </div>
+
+          <div class="calc-field">
+            <label for="salary">Average total employment cost per person</label>
+            <input type="number" id="salary" value="95000" min="30000" max="400000" step="5000" />
+          </div>
+
+          <div class="calc-field">
+            <label for="dip">Productivity dip around go-live, as a percentage</label>
+            <input type="number" id="dip" value="20" min="0" max="80" step="1" />
+            <p class="calc-hint">How much slower people are while they learn the new way.</p>
+          </div>
+
+          <div class="calc-field">
+            <label for="weeks">How many weeks the dip lasts</label>
+            <input type="number" id="weeks" value="6" min="0" max="52" step="1" />
+            <p class="calc-hint">Well-prepared groups recover in two to three. Unprepared groups take a quarter.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="calc-out">
+          <h3>What it is costing you</h3>
+
+          <div class="calc-line">
+            <span>Total change team cost across the programme</span>
+            <b id="o-team">&mdash;</b>
+          </div>
+          <div class="calc-line">
+            <span>Of that, spent producing documents rather than working with people</span>
+            <b id="o-busy">&mdash;</b>
+          </div>
+          <div class="calc-line">
+            <span>Recoverable and redirected to people, at a conservative three quarters</span>
+            <b id="o-recover">&mdash;</b>
+          </div>
+          <div class="calc-line">
+            <span>Lost productivity while your people learn the new way</span>
+            <b id="o-dip">&mdash;</b>
+          </div>
+          <div class="calc-line">
+            <span>Saved by halving the depth or the length of that dip</span>
+            <b id="o-dipsave">&mdash;</b>
+          </div>
+
+          <div class="calc-line hero-line">
+            <span>What better preparation is worth on this programme</span>
+            <b id="o-total">&mdash;</b>
+          </div>
+
+          <p class="calc-note">
+            The second number is the one that matters, and it is the one nobody puts on a
+            slide. The change team cost is visible and gets argued about in budget
+            meetings. The productivity dip is invisible, lands on the operating line
+            rather than the project line, and is several times larger.
+          </p>
+        </div>
+
+        <p class="calc-assume" id="assume"></p>
+      </div>
+
+    </form>
+
+    <p class="calc-assume">
+      <strong>The assumptions, written down.</strong>
+      The sixty per cent figure is my own observation from two decades inside
+      transformations, not a vendor statistic. Working year is taken as 220 days for cost
+      purposes and 260 calendar weekdays for the productivity calculation. The recovery
+      figure is set at three quarters rather than all of it, because reviewing and editing
+      a generated document still takes real time and should. The productivity dip is
+      applied evenly across everyone impacted, which is generous to the optimistic case,
+      since in practice one or two cohorts carry most of it. If any of that is wrong for
+      your situation, change the inputs or tell me and I will change the model.
+    </p>
+  </div>
+</section>
+
+<!-- WHAT THE 40% BUYS -->
+<section class="section section-cream" id="forty">
+  <div class="container">
+    <p class="kicker">What you get back</p>
+    <h2 class="section-h">What the forty per cent is actually for.</h2>
+    <p class="section-lede">
+      Give a good change lead their time back and this is where it goes. Every one of
+      these is a thing a person has to do. None of them can be generated, and none of
+      them happen while somebody is reformatting a deck.
+    </p>
+
+    <div class="fixes">
+
+      <article class="fix">
+        <p class="fix-sym"><span>Gets the time back</span>The project</p>
+        <div class="fix-body">
+          <h3>Someone is finally watching the humans, not just the plan.</h3>
+          <p>
+            Delivery risk and people risk are different risks and they surface in
+            different rooms. When the change lead is in the delivery stand-up instead of
+            in a document, the people risk gets named while there is still time to do
+            something about it.
+          </p>
+        </div>
+      </article>
+
+      <article class="fix">
+        <p class="fix-sym"><span>Gets the time back</span>Behaviour change</p>
+        <div class="fix-body">
+          <h3>Behaviour changes in conversations, not in comms.</h3>
+          <p>
+            Nobody works differently because they received an email. They work differently
+            because their supervisor stood next to them and did it the new way, twice, on
+            a bad day. That takes a person, on the floor, on the shift that actually runs
+            at three in the morning.
+          </p>
+        </div>
+      </article>
+
+      <article class="fix">
+        <p class="fix-sym"><span>Gets the time back</span>Training</p>
+        <div class="fix-body">
+          <h3>Training aimed at the real gap, not the assumed one.</h3>
+          <p>
+            Most training is built from the system, so it teaches the software. Training
+            built from a real impact register teaches the fifteen minutes of someone's day
+            that genuinely change. It is shorter, it is cheaper, and people turn up.
+          </p>
+        </div>
+      </article>
+
+      <article class="fix">
+        <p class="fix-sym"><span>Gets the time back</span>Stakeholder analysis</p>
+        <div class="fix-body">
+          <h3>A stakeholder map is only worth the conversations it triggers.</h3>
+          <p>
+            The grid is not the work. The work is the sponsor sitting down with the
+            high-influence detractor and asking what they are actually worried about. The
+            Foundry produces the grid and tells you who to see first. You still have to go
+            and see them, and now you have the afternoon to do it.
+          </p>
+        </div>
+      </article>
+
+      <article class="fix">
+        <p class="fix-sym"><span>Gets the time back</span>The people themselves</p>
+        <div class="fix-body">
+          <h3>Interviews. Actual ones, with the people it lands on.</h3>
+          <p>
+            This is the single highest-value hour in change work and it is the first thing
+            cut when the deck is due. It is also where the words come from, which is the
+            next section.
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section diag-teaser">
+  <div class="container diag-inner">
+    <p class="kicker">The fix</p>
+    <h2 class="section-h">Take the sixty per cent off their desk.</h2>
+    <p class="section-lede">
+      The Foundry produces the strategy, the stakeholder map, the impact register, the
+      comms, the surveys and the SteerCo deck from one intake, and regenerates all of it
+      when the change changes. Same headcount, same budget, spent on the part that
+      actually moves people.
+    </p>
+    <div class="hero-cta" style="justify-content:center;">
+      <a class="btn btn-primary btn-lg" href="the-foundry.html">See what The Foundry fixes</a>
+      <a class="btn btn-ghost btn-lg" href="foundry/" style="border-color: var(--cream); color: var(--cream);">Open the working demo</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="foot-left">
+      <p class="foot-brand">The TJ Method <span class="foot-sep">&middot;</span> Pty Ltd</p>
+      <p class="foot-small">The Foundry. The work of change, produced.</p>
+    </div>
+    <div class="foot-right">
+      <p class="foot-small">
+        <a href="mailto:thomas@thetjmethod.com.au">thomas@thetjmethod.com.au</a>
+        &nbsp;&middot;&nbsp;
+        <a href="tel:+61473833625">+61 473 833 625</a>
+        &nbsp;&middot;&nbsp;
+        <a href="https://www.linkedin.com/in/thomasjoffe" target="_blank" rel="noopener">LinkedIn</a>
+      </p>
+      <p class="foot-small foot-confidential">
+        Every conversation is held in strict confidence.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var BUSYWORK_SHARE = 0.60;   // share of change time spent producing documents
+  var RECOVERY_SHARE = 0.75;   // share of that we claim back, conservatively
+  var WORK_DAYS_YEAR = 260;    // weekdays, for the productivity calculation
+
+  var ids = ['fte', 'rate', 'months', 'people', 'salary', 'dip', 'weeks'];
+  var el = {};
+  ids.forEach(function (id) { el[id] = document.getElementById(id); });
+
+  var out = {
+    team:    document.getElementById('o-team'),
+    busy:    document.getElementById('o-busy'),
+    recover: document.getElementById('o-recover'),
+    dip:     document.getElementById('o-dip'),
+    dipsave: document.getElementById('o-dipsave'),
+    total:   document.getElementById('o-total'),
+    assume:  document.getElementById('assume')
+  };
+
+  function money(n) {
+    if (!isFinite(n) || n < 0) n = 0;
+    return '$' + Math.round(n).toLocaleString('en-AU');
+  }
+
+  function num(id, fallback) {
+    var v = parseFloat(el[id].value);
+    return isFinite(v) && v >= 0 ? v : fallback;
+  }
+
+  function recalc() {
+    var fte     = num('fte', 2);
+    var rate    = num('rate', 180000);
+    var months  = num('months', 12);
+    var people  = num('people', 400);
+    var salary  = num('salary', 95000);
+    var dipPct  = Math.min(num('dip', 20), 100);
+    var weeks   = num('weeks', 6);
+
+    var teamCost  = fte * rate * (months / 12);
+    var busywork  = teamCost * BUSYWORK_SHARE;
+    var recovered = busywork * RECOVERY_SHARE;
+
+    var dailyCost = salary / WORK_DAYS_YEAR;
+    var dipDays   = weeks * 5;
+    var dipCost   = people * dailyCost * (dipPct / 100) * dipDays;
+    var dipSaved  = dipCost / 2;
+
+    var total = recovered + dipSaved;
+
+    out.team.textContent    = money(teamCost);
+    out.busy.textContent    = money(busywork);
+    out.recover.textContent = money(recovered);
+    out.dip.textContent     = money(dipCost);
+    out.dipsave.textContent = money(dipSaved);
+    out.total.textContent   = money(total);
+
+    var ratio = busywork > 0 ? (dipCost / busywork) : 0;
+    if (ratio >= 1.5) {
+      out.assume.innerHTML = 'On these numbers the invisible cost, the productivity dip, is <strong>' +
+        ratio.toFixed(1) + ' times</strong> the amount you are spending on change people producing documents. ' +
+        'The argument about the change budget is happening at the wrong end of the problem.';
+    } else if (dipCost > 0) {
+      out.assume.innerHTML = 'On these numbers the productivity dip and the document production cost are of a ' +
+        'similar size. Both are recoverable, and the same shift in how the work gets produced addresses them together.';
+    } else {
+      out.assume.textContent = '';
+    }
+  }
+
+  ids.forEach(function (id) {
+    el[id].addEventListener('input', recalc);
+    el[id].addEventListener('change', recalc);
+  });
+  document.getElementById('calc').addEventListener('submit', function (e) { e.preventDefault(); });
+
+  recalc();
+})();
+</script>
+
+</body>
+</html>
