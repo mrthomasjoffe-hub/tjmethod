@@ -16,21 +16,24 @@ Print everything from the manual build except `dial.stl` and `lid.stl`, plus:
 
 ## Shopping list
 - 28BYJ-48 5 V stepper motor with ULN2003 driver board. They are sold as a pair.
-- ESP32 dev board. Any common 30 or 38 pin board works.
+- Seeed Studio XIAO ESP32-C3, or any classic ESP32 dev board. Solder the headers on the XIAO and screw on its Wi-Fi antenna.
 - 5 V 2 A USB power supply and a USB cable.
 - 5 jumper wires for ESP32 to driver, and a 5 wire extension so the electronics can live away from the sump.
 - A small project box for the ESP32 and driver.
 - Screws in nylon or 316 stainless: 3x M3 x 8 for the tower, 2x M3 x 10 with nuts for the motor.
 
 ## Wiring
-| ULN2003 | ESP32 |
-|---|---|
-| IN1 | GPIO 16 |
-| IN2 | GPIO 17 |
-| IN3 | GPIO 18 |
-| IN4 | GPIO 19 |
-| + | 5V or VIN |
-| - | GND |
+| ULN2003 | XIAO ESP32-C3 | Classic ESP32 |
+|---|---|---|
+| IN1 | D1 / GPIO 3 | GPIO 16 |
+| IN2 | D2 / GPIO 4 | GPIO 17 |
+| IN3 | D3 / GPIO 5 | GPIO 18 |
+| IN4 | D4 / GPIO 6 | GPIO 19 |
+| + | 5V | 5V or VIN |
+| - | GND | GND |
+
+On the XIAO, leave D0 free. It is a boot pin and the driver board can stop the XIAO from starting.
+In the Arduino IDE pick "XIAO_ESP32C3" as the board. The pins switch automatically.
 
 The motor plugs into the white socket on the driver board.
 

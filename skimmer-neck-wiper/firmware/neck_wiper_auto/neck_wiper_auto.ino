@@ -2,7 +2,8 @@
 // ESP32 + ULN2003 + 28BYJ-48. Turns the wiper one full revolution at set times each day.
 // Press the BOOT button on the ESP32 for a wipe on demand.
 //
-// Board: any ESP32 dev board, Arduino core. No extra libraries needed.
+// Board: Seeed XIAO ESP32-C3 or any classic ESP32 dev board, Arduino core. No extra libraries needed.
+// Pins switch automatically from the board you pick in the Arduino IDE.
 
 #include <WiFi.h>
 #include <time.h>
@@ -27,8 +28,15 @@ const bool CLOCKWISE     = true;   // flip if it turns the wrong way
 const int  STEP_DELAY_US = 2000;   // slower gives more torque. 2000 is about 8 s per turn
 
 // ---------- hardware ----------
+#if CONFIG_IDF_TARGET_ESP32C3
+// Seeed XIAO ESP32-C3. D1..D4. D0 is skipped because GPIO2 is a boot strapping pin
+const int COIL_PINS[4] = {3, 4, 5, 6};       // ULN2003 IN1..IN4
+const int BUTTON_PIN   = 9;                  // the BOOT button on the XIAO
+#else
+// Classic ESP32 DevKit, 30 or 38 pin
 const int COIL_PINS[4] = {16, 17, 18, 19};   // ULN2003 IN1..IN4
 const int BUTTON_PIN   = 0;                  // the BOOT button on most ESP32 boards
+#endif
 const int STEPS_PER_REV = 4076;              // 28BYJ-48 half steps, real gear ratio 63.68:1
 
 const uint8_t HALF_STEP[8] = {
