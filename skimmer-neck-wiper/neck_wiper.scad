@@ -7,9 +7,9 @@
 PART = "assembly";   // "lid" | "rotor" | "dial" | "blade" | "assembly"
 
 /* ---------- [MEASURE] cup ---------- */
-cup_id        = 120;   // [MEASURE] inside diameter of the cup at the very top rim
-cup_rim_od    = 126;   // [MEASURE] outside diameter of the cup rim
-neck_id       = 60;    // [MEASURE] inside diameter of the neck (riser tube) you want wiped
+cup_id        = 140;   // [MEASURE] inside diameter of the cup at the very top rim
+cup_rim_od    = 148;   // [MEASURE] outside diameter of the cup rim
+neck_id       = 120;   // [SET 120 per Thomas] inside diameter of the neck (riser tube) you want wiped
 neck_top_drop = 30;    // [MEASURE] cup rim top down to the top edge of the neck
 wipe_depth    = 60;    // how far down inside the neck the blades reach
 
@@ -38,7 +38,7 @@ dial_h      = 14;
 dial_gap    = 0.6;
 
 /* ---------- wiper ---------- */
-arm_h       = 6;
+arm_h       = 8;
 arm_clear   = 4;       // arm bottom above neck top
 spar_w      = 6;
 spar_gap    = 3;       // radial gap spar edge to neck wall, the blade bridges it
